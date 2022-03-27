@@ -122,5 +122,38 @@ class Location(models.Model):
         return cities
 
 
-# category Model
+# Category Model
 
+class Category(models.Model):
+    '''
+    model handles category options
+    '''
+    name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.name
+
+    def save_category(self):
+        '''
+        method saves a category
+        '''
+        self.save()
+
+    def delete_category(self):
+        '''
+        method deletes a category
+        '''
+        self.delete()
+
+    @classmethod
+    def update_category(cls, search_term , new_cat):
+        '''
+        method updates chosen category
+        '''
+        try:
+            to_update = Category.objects.get(name = search_term)
+            to_update.name = new_cat
+            to_update.save()
+            return to_update
+        except Category.DoesNotExist:
+            print('This category does not exist')
