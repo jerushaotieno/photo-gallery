@@ -126,3 +126,44 @@ class LocationTest(TestCase):
         '''
         locations = Location.get_all()
         print(locations)
+
+
+# Categor Model Tests
+
+class CategoryTest(TestCase):
+    '''
+    test class for categories model
+    '''
+    def setUp(self):
+        '''
+        test method for creating category instances before running any tests
+        '''
+        self.new_category = Category(name='newCategory')
+        self.new_category.save_category()
+
+    def tearDown(self):
+        '''
+        test method for deleting category instances after running each test
+        '''
+        Category.objects.all().delete()
+
+    def test_save_category(self):
+        '''
+        test method for saving a category instance correctly
+        '''
+        self.assertTrue(len(Category.objects.all()) == 1)     
+
+    def test_delete_category(self):
+        '''
+        test method for deleting a category instance correctly
+        '''
+        self.new_category.save_category()
+        self.new_category.delete_category()
+        self.assertTrue(len(Category.objects.all()) == 0)    
+
+    def test_update_category(self):
+        '''
+        test method for updating a category insatnce correctly
+        '''
+        update_category = Category.update_category('newCategory', 'newCategory2')
+        self.assertEqual(update_category.name, 'newCategory2')
