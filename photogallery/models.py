@@ -3,6 +3,8 @@ from django.db import models
 
 # Create your models here.
 
+# Image Model
+
 class Image(models.Model):
     '''
     for images
@@ -72,3 +74,53 @@ class Image(models.Model):
         '''
         filtered_image = Image.objects.filter(location__city__contains=location)
         return filtered_image
+
+
+# Location Model
+
+class Location(models.Model):
+    '''
+    model handles location factor
+    '''
+    city = models.CharField(max_length=30)
+    country = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.city
+
+    def save_location(self):
+        '''
+        method saves a location
+        '''
+        self.save()
+
+    def delete_location(self):
+        '''
+        method deletes a location
+        '''
+        self.delete()
+
+    @classmethod
+    def update_location(cls, search_term , new_locale):
+        '''
+        method updates a location's city name
+        '''
+        try:
+            to_update = Location.objects.get(country = search_term)
+            to_update.city = new_locale
+            to_update.save()
+            return to_update
+        except Location.DoesNotExist:
+            print('That location does not exist')
+
+    @classmethod
+    def get_all(cls):
+        '''
+        method retrieves all stored locations
+        '''
+        cities = Location.objects.all()
+        return cities
+
+
+# category Model
+
