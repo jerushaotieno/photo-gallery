@@ -2,4 +2,14 @@
 
 <h1> Welcome to the Photo Gallery</h1>
 
+<div class="row container">
+    {% for image in images %}
+    <div class="col-md-4">
+<h4>{{ image.title }}
+</h4>
+<img src="{{ image.image_link.url }}" style="width: 300px; height: 300px;" alt="">
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}

@@ -42,7 +42,6 @@ class Image(models.Model):
         except self.DoesNotExist:
             print('This image does not exist')
 
-
     @classmethod
     def get_all(cls):
         '''

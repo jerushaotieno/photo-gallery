@@ -2,18 +2,19 @@
 
 <div class="block">
     <div class="row">
-        {% if results %}
-        <h2> {{results|length }} items found for '{{message}}' </h2>
+        {% if result %}
+        <h2> {{result|length }} items found for '{{message}}' </h2>
         {% else %}
-        <h2> 0 results found for '{{message}}' </h2>
+        <h2> 0 result found for '{{message}}' </h2>
         {% endif %}
     </div>
 
     <div class="row">
         <div class=col-md-4>
-            {% if results %} {% for item in results %}
+            {% if result %} {% for item in result %}
             <div class="thumbnail">
                 <img src="{{item.image_link.url}}" class="gallery-image" alt="">
+                {{item.title}}
                 <div class="caption">
                     <ul>
                         <li class="gallery-item-likes"><span class="visually-hidden"></span><i class="fa fa-tags fa-2x" aria-hidden="true"></i> {{item.category}} </li>

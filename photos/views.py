@@ -9,7 +9,9 @@ from photos.models import Image, Location
 # Create your views here.
 
 def homepage(request):
-    return render (request,'welcome.html')
+    images = Image.objects.all()
+    return render (request,'welcome.html', {'images':images})
+
 
 def photos_of_day(request):
     date = dt.date.today()
