@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from django.http  import Http404, HttpResponse
 import datetime as dt
 
-from photos.models import Image
+from photos.models import Image, Location
 
 # Create your views here.
 
@@ -34,16 +34,31 @@ def past_days_photos(request, past_date):
     return render(request, 'all-photos/past-photos.html', {"date": date})
 
 
+# Photo Gallery
+
+def gallery(request):
+    picture = Image.get_all()
+    location = Location.get_all()
+    return render(request, 'gallery.html', {'picture': picture, 'location':location})
+
+
 
 # Search by category
 
 def search(request):
     if 'category' in request.GET and request.GET['category']:
-        search_term = request.GET.get('category')
-        res = Image.search_image(search_term)
-        message = f'{search_term}'
+        search_for = request.GET.get('category')
+        result = Image.search_image(search_for)
+        message = f'{search_for}'
 
-        return render(request, 'search.html', {'message':message, 'results':res})
+        return render(request, 'search.html', {'message':message, 'result':result})
     else:
-        message = 'Type in what to search for'
+        message = 'Type something else to search for'
         return render(request, 'search.html', {'message':message}) 
+
+
+# Location 
+
+def location(request,locale):
+    image = Image.filter_by_location(locale)
+    return render(request, 'location.html', {'results':image})
