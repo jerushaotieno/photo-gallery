@@ -63,7 +63,7 @@ class Image(models.Model):
         '''
         method searches all images by category
         '''
-        searched_image = cls.objects.filter(category__name__contains=cat)
+        searched_image = cls.objects.filter(category__name__icontains=cat)
         return searched_image
 
     @classmethod

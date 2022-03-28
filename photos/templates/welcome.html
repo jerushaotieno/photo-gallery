@@ -8,8 +8,76 @@
 <h4>{{ image.title }}
 </h4>
 <img src="{{ image.image_link.url }}" style="width: 300px; height: 300px;" alt="">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    View Detals
+  </button>
     </div>
     {% endfor %}
+
+<!-- Button trigger modal -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% for item in images %}
+        <div class="thumbnail">
+            <div>
+            <img src="{{item.image_link.url}}" class="gallery-image" alt="">
+            {{item.title}}
+            {{item.description}}
+            {{item.category}}
+            {{item.location}}
+            {{item.published_date}}
+            </div>
+            <div class="caption">
+                <ul>
+                    <li class="gallery-item-likes"><span class="visually-hidden"></span><i class="fa fa-tags fa-2x" aria-hidden="true"></i> {{item.category}} </li>
+                    <li class="gallery-item-comments"><span class="visually-hidden"></span><i class="fa fa-thumb-tack fa-2x" aria-hidden="true"></i> {{item.location}} </li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button class="rounded btn-primary" onclick=copyLink()"{{image.id}}-url") >📋Copy Download Link</button>'>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 {% endblock %}

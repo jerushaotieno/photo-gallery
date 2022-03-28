@@ -55,7 +55,7 @@ def search(request):
 
         return render(request, 'search.html', {'message':message, 'result':result})
     else:
-        message = 'Type something else to search for'
+        message = 'Try searching something else'
         return render(request, 'search.html', {'message':message}) 
 
 

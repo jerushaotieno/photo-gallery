@@ -11,10 +11,15 @@
 
     <div class="row">
         <div class=col-md-4>
-            {% if result %} {% for item in result %}
+            {% for item in result %}
             <div class="thumbnail">
                 <img src="{{item.image_link.url}}" class="gallery-image" alt="">
                 {{item.title}}
+                {{item.description}}
+                {{item.category}}
+                {{item.location}}
+                {{item.published_date}}
+
                 <div class="caption">
                     <ul>
                         <li class="gallery-item-likes"><span class="visually-hidden"></span><i class="fa fa-tags fa-2x" aria-hidden="true"></i> {{item.category}} </li>
@@ -22,7 +27,7 @@
                     </ul>
                 </div>
             </div>
-            {% endfor %} {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
